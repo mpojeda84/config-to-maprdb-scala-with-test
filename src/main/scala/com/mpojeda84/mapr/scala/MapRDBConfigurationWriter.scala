@@ -14,7 +14,7 @@ object MapRDBConfigurationWriter {
       val connection = DriverManager.getConnection("ojai:mapr:")
       val store = connection.getStore(tableName)
 
-      val jsonString =  conf.getAll.addId().addTimestamp().toJSON()
+      val jsonString =  conf.getAll.addTimestamp().addId().toJSON()
       store.insertOrReplace(connection.newDocument(jsonString))
 
       store.close()
